@@ -1,0 +1,164 @@
+<div id="print" *ngIf="DisplayStatus">
+
+    <div class="container billhead">
+        <div class="left">
+            <img src="/assets/img/kaarlogo.jpg" alt="">
+            <h3>KAAR TECHNOLOGIES</h3>
+            <h6>25,Arcot Road ,Shyamala Tower</h6>
+            <h6>Chennai-600028</h6>
+        </div>
+        <div class="right">
+            <img src="/assets/img/orglogo.jpg" alt="">
+            <h3>{{OrgData["ORGNAME"]}}</h3>
+            <h6>{{OrgData["STREET"]+' Ford Yard'}}</h6>
+            <h6>{{'Chennai-'+OrgData["POSTALCODE"]}}</h6>
+        </div>
+
+    </div>
+
+    <!-- <div class="card-header">
+        <h2>{{'Purchase Order No :'+GoodsHeader.MAT_DOC_NO}}</h2>
+    </div> -->
+
+    <div class="content container">
+        <h2 class="text-center text-danger  card-header">Goods Receipt Bill </h2>
+        <div class="head flex-row card-header">
+            <h5 class="text-center text-black-700 m-4">{{'Purchase Order No : '+GoodsHeader["MAT_DOC_NO"]}}</h5>
+            <h5 class="text-center text-blue-700 m-4">{{'Document Year : '+GoodsHeader["DOC_YEAR"]}}</h5>
+        </div>
+        <div class="head flex-row justify-content-around mb-8 card-footer">
+            <h5 class="text-center text-black-700 m-4">{{'Purchase Order Entered Date : '+GoodsHeader["DOC_DATE"]}}</h5>
+            <h5 class="text-center text-blue-700 m-4">{{'Posting Date : '+GoodsHeader["PSTNG_DATE"]}}</h5>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <div class="tab ">
+            <table class="table table-bordered table-striped  table-hover table-responsive-md" id="salordtab">
+                <thead class="bg-primary text-blue-500 border-solid text-capitalize text-md-center border-dark ">
+                    <tr class="hover:bg-primary-reverse">
+                        <th scope="col" class="border-solid border-dark">Material Doc No</th>
+                        <th scope="col" class="border-solid border-dark">Document Year</th>
+                        <th scope="col" class="border-solid border-dark">Item No</th>
+
+                        <th scope="col" class="border-solid border-dark">Material No</th>
+
+                        <th scope="col" class="border-solid border-dark">Storage Loc</th>
+                        <th scope="col" class="border-solid border-dark">Goods Movement</th>
+
+                        <th scope="col" class="border-solid border-dark">Entered Quantity</th>
+                        <th scope="col" class="border-solid border-dark">Measure Unit</th>
+                        <th scope="col" class="border-solid border-dark">Ordered Unit iso</th>
+                        <th scope="col" class="border-solid border-dark">purchase order</th>
+                        <th scope="col" class="border-solid border-dark">Po order unit</th>
+                        <th scope="col" class="border-solid border-dark">Purchase Order iso</th>
+
+                    </tr>
+                </thead>
+                <tbody class="active border-solid border-dark text-black-500 font-bold font-roboto
+            text-center">
+                    <tr class="hover:bg-primary-reverse" *ngFor="let item of GoodsItem; let i=index">
+                        <th scope="row" class="border-black-alpha-80">{{item["MAT_DOC"]}}</th>
+                        <td class="border-black-alpha-80">{{item["DOC_YEAR"]}}</td>
+                        <td class=" border-black-alpha-80">{{item["MATDOC_ITM"]}}</td>
+
+                        <td class="border-black-alpha-80">{{item["MATERIAL"]}}</td>
+
+                        <td class="bg-white border-black-alpha-80">{{item["STORAGE_LOC"]}}</td>
+                        <td class="bg-white border-black-alpha-80">{{item["MOVEMENT_TYP"]}}</td>
+
+                        <td class="bg-white border-black-alpha-80">{{item["ENTRY_QUANT"]}}</td>
+                        <td class="bg-white border-black-alpha-80">{{item["ENTRY_UOM"]}}</td>
+                        <td class="bg-white border-black-alpha-80">{{item["ENTRY_UOM_ISO"]}}</td>
+                        <td class="bg-white border-black-alpha-80">{{item["ORDERPR_UN"]}}</td>
+                        <td class="bg-white border-black-alpha-80">{{item["ORDERPR_UN_ISO"]}}</td>
+                        <td class="bg-white border-black-alpha-80">{{item["PO_PR_QNT"]}}</td>
+
+
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+
+    <div class="details container">
+        <p>.</p>
+
+    </div>
+
+
+
+    <div class="calculate card ">
+        <div class="card-header">
+            <h3 class="text-center">Receipt Details Summary</h3>
+        </div>
+        <div class="card-body">
+
+            <div class="quant">
+                <h5 class="text-danger ">Entered Total Ordered Quantity :</h5>
+                <h5>{{TotalEnterQuant + ' Nos'}}</h5>
+            </div>
+
+
+            <div class="quant">
+                <h5 class="text-success">Total Quantity in Purchase Order :</h5>
+                <h5 class="">{{TotalPOQuant + ' '+'NOS'}}</h5>
+            </div>
+
+
+
+        </div>
+
+        <div class="card-footer bg-yellow-300">
+            <h5 class="">{{'Detailed Invoice Information is available in Purchase Order History Receipt.'+' '}}</h5>
+
+        </div>
+
+
+
+    </div>
+
+    <div class="details container">
+        <p>.</p>
+
+    </div>
+
+
+
+
+    <div class="subscribe-us-area container">
+        <div class="container subscribe">
+            <div class="row">
+                <div class="col-lg-12 text-center subscribe-title">
+                    <h4 class="text-uppercase">Kaar Technologies . 25 yrs of excellence in SAP .</h4>
+                    <h5 class="para">Best CRM Pure Play SAP Providers .
+                    </h5>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="download">
+    <button type="submit" class="btn btn-dark" (click)="ExportPDF()"> <i class="fa fa-download" style="font-size:30px;color:white"></i> Download Goods Receipt</button>
+    <!-- <button type="button" class="btn btn-warning"> <i class="fa fa-arrow-circle-left " style="font-size:30px;color:white"></i> Back To Purchase Order</button> -->
+
+</div>
+
+<div class="container" *ngIf="!DisplayStatus">
+    <h3 class="card-header text-center text-capitalize text-danger">{{'No Goods Reciept Data is found for this Purchase Order No'+' '+selectedData }}</h3>
+</div>

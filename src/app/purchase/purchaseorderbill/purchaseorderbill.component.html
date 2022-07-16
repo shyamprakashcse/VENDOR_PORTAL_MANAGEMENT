@@ -1,0 +1,122 @@
+<div id="print">
+
+    <div class="container billhead">
+        <div class="left">
+            <img src="/assets/img/kaarlogo.jpg" alt="">
+            <h3>KAAR TECHNOLOGIES</h3>
+            <h6>25,Arcot Road ,Shyamala Tower</h6>
+            <h6>Chennai-600028</h6>
+        </div>
+        <div class="right">
+            <img src="/assets/img/orglogo.jpg" alt="">
+            <h3>{{OrgData["ORGNAME"]}}</h3>
+            <h6>{{OrgData["STREET"]+' Ford Yard'}}</h6>
+            <h6>{{'Chennai-'+OrgData["POSTALCODE"]}}</h6>
+        </div>
+
+    </div>
+
+    <div class="content container">
+        <h2 class="text-center text-danger card-footer">Purchase Order Memo </h2>
+        <h5 class="text-center text-blue-700 card-footer">{{'Purchase Order No : '+POBillData[0]["PURCAHSE_ORDER_NO"]}}</h5>
+
+        <div class="tab">
+            <table class="table table-bordered table-striped  table-hover table-responsive" id="salordtab">
+                <thead class="bg-primary text-blue-500 border-solid text-capitalize text-md-center border-dark ">
+                    <tr class="hover:bg-primary-reverse">
+                        <th class="border-solid border-dark">Item No</th>
+                        <th class="border-solid border-dark">Material No</th>
+                        <th class="border-solid border-dark">Material Name</th>
+                        <th class="border-solid border-dark">Total Quantity</th>
+                        <th class="border-solid border-dark">Net Price</th>
+                        <th class="border-solid border-dark">Net Value</th>
+                        <th class="border-solid border-dark">Gross Price</th>
+                        <th class="border-solid border-dark">Effective Price</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-purple-300 border-solid border-dark text-black-500 font-bold font-roboto
+              text-center">
+                    <tr class="hover:bg-primary-reverse" *ngFor="let pol of POBillData; let i=index">
+                        <td class="border-solid border-dark bg-primary">{{pol.PURCHASE_ORDER_ITEM}}</td>
+                        <td class="border-solid border-dark">{{pol.MAT_NO}}</td>
+                        <td class="border-solid border-dark">{{pol.MAT_NAME}}</td>
+                        <td class="border-solid border-dark">{{pol.TOT_QTY}}</td>
+                        <td class="border-solid border-dark">{{pol.NET_PRICE}}</td>
+                        <td class="border-solid border-dark bg-white">{{pol.NET_VALUE}}</td>
+                        <td class="border-solid border-dark bg-white">{{pol.GROS_VALUE}}</td>
+                        <td class="border-solid border-dark bg-indigo-300">{{pol.EFFECTIVE_VAL}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+
+    <div class="details container">
+        <p>.</p>
+
+    </div>
+
+    <div class="calculate card ">
+        <div class="card-header">
+            <h3 class="text-center">Purchase Order Details Summary</h3>
+        </div>
+        <div class="card-body">
+
+            <div class="quant">
+                <h5 class="text-danger ">Total Ordered Quantity :</h5>
+                <h5>{{TotalOrderedQuantity + ' Nos'}}</h5>
+            </div>
+
+            <div class="quant">
+                <h5 class="text-danger">Total Gross Amount :</h5>
+                <h5 class="">{{TotalGrossValue + ' Amt'}}</h5>
+            </div>
+
+            <div class="quant">
+                <h5 class="text-danger">Total Net Amount :</h5>
+                <h5 class="">{{TotalNetValue + ' Amt'}}</h5>
+            </div>
+
+            <div class="quant">
+                <h5 class="text-danger">{{'Total Effective Amount Vendor Price : '+' '}}</h5>
+                <h5>{{''+TotalEffectiveValue +' '+ ' Amt'}}</h5>
+            </div>
+
+        </div>
+
+        <div class="card-footer">
+            <h4 class="text-danger text-right">{{'Total Amount to be paid : '+' '+TotalEffectiveValue+' Amt'}}</h4>
+        </div>
+
+    </div>
+
+    <div class="details container">
+        <p>.</p>
+
+    </div>
+
+
+
+    <div class="subscribe-us-area container">
+        <div class="container subscribe">
+            <div class="row">
+                <div class="col-lg-12 text-center subscribe-title">
+                    <h4 class="text-uppercase">Kaar Technologies . 25 yrs of excellence in SAP .</h4>
+                    <h5 class="para">Best CRM Pure Play SAP Providers .
+                    </h5>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="download">
+    <button type="button" class="btn btn-dark" (click)="ExportPDF()"> <i class="fa fa-download" style="font-size:30px;color:white"></i> Download PurchaseOrder</button>
+    <!-- <button type="button" class="btn btn-warning"> <i class="fa fa-arrow-circle-left " style="font-size:30px;color:white"></i> Back To Purchase Order</button> -->
+
+</div>

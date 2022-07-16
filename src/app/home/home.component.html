@@ -1,0 +1,65 @@
+<nav class="navbar bg-light m-4 btn-border-bot">
+
+    <span class="bg-black-alpha-90 badge text-white" (click)="brand()">
+  <img src="assets/img/kaarlogo.jpg" width="50" height="30" class="d-inline-block align-top" alt="" (click)="brand()"> KAAR TECHNOLOGIES </span>
+    <button type="button" class="btn btn-warning btn-border" (click)="RFQ()"> <i class="fa fa-line-chart" style="font-size:30px;color:white"></i>Request Quotation</button>
+    <button type="button" class="btn btn-warning" (click)="purchaseOrder()"> <i class="fa fa-calendar-check-o" style="font-size:30px;color:white"></i>Purchase Order</button>
+
+    <button type="button" class="btn  btn-danger btn-border" (click)="logout()"> <i class="fa fa-sign-out " style="font-size:30px;color:white"></i>Logout</button>
+
+</nav>
+
+
+<div class="container d-flex justify-content-center align-items-center bg-dark ">
+
+    <div class="card box-shadow">
+
+        <div class="upper">
+
+            <img src="https://i.imgur.com/Qtrsrk5.jpg" class="img-fluid">
+
+        </div>
+
+        <div class="user text-center">
+
+            <div class="profile">
+
+                <img src="assets/img/avatar.jpg" class="rounded-circle" width="80">
+
+            </div>
+
+        </div>
+
+
+        <div class="mt-5 text-center">
+
+            <h4 class="mb-0">{{userObj["NAME"]}}</h4>
+            <span class="text-muted d-block mb-2">{{userObj["DESIGNATION"]}}</span>
+
+            <button class="btn btn-primary btn-sm follow" (click)="RFQ()">follow</button>
+
+
+            <div class="d-flex flex-column justify-content-between align-items-center mt-4 px-4">
+
+                <div class="stats">
+                    <!-- <h6 class="mb-0">Sales Organization</h6> -->
+                    <h6 class="badge bg-warning text-black ">{{userObj["ORGNAME"]}}</h6>
+                    <h6 class="text-20 ">{{userObj["STREET"]+","+userObj["CITY"]+","+userObj["POSTALCODE"]}}</h6>
+
+                </div>
+
+
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

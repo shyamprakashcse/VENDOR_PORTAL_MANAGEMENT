@@ -1,0 +1,51 @@
+<div class="quora-bar">
+    <img src="/assets/img/kaarlogo.jpg" alt="qlogo">
+    <!-- <input type="search" name="query" id="search-box" placeholder="search your question here" class="form-control" ngModel #searchbar="ngModel" (click)="show($event)"> -->
+    <div class="search-outer">
+        <!-- <input id="search-input" type="search" placeholder="search your questions here" [(ngModel)]="userquery" class="form-control" /> -->
+        <input id="search-input" type="search" [(ngModel)]="searchInput.PURCHASE_ORDER_NO" placeholder="Search Quotation No" class="form-control" />
+
+        <button type="submit" class="btn btn-primary">search</button>
+
+    </div>
+
+    <button type="button" class="btn btn-warning" (click)="backToHome()"> <i class="fa fa-arrow-circle-left " style="font-size:30px;color:white"></i> Back To Home </button>
+    <button type="button" class="btn btn-dark" (click)="ExportPDF()"> <i class="fa fa-download" style="font-size:20px;color:white"></i> Download Quotation Data</button>
+
+</div>
+
+<div class="container-fluid " id="print">
+
+    <h2 class="text-center pt-5">Quotation Request Data</h2>
+    <div class="tab">
+        <table class="table table-bordered table-striped  table-hover table-responsive" id="inqtab">
+            <thead class="bg-primary text-white text-capitalize border-solid text-md-center border-dark ">
+                <tr>
+                    <th class="hover:bg-primary-reverse" (click)="sortHeader('PURCHASE_ORDER_NO')">Quotation No <i class="fa fa-sort" (click)="sortHeader('PURCHASE_ORDER_NO')"></i></th>
+                    <th class="hover:bg-primary-reverse" (click)="sortHeader('PURCHASE_ORDER_CREATED_DATE')">Quotation Created On <i class="fa fa-sort" (click)="sortHeader('PURCHASE_ORDER_CREATED_DATE')"></i></th>
+                    <th class="hover:bg-primary-reverse" (click)="sortHeader('PURCHASE_ORGANISATION')">Organisation ID <i class="fa fa-sort" (click)="sortHeader('PURCHASE_ORGANISATION')"></i></th>
+                    <th class="hover:bg-primary-reverse" (click)="sortHeader('PURCHASE_DOC_DATE')">Purchase Document Date <i class="fa fa-sort" (click)="sortHeader('PURCHASE_DOC_DATE')"></i></th>
+                    <th class="hover:bg-primary-reverse" (click)="sortHeader('BID_LAST_DATE')">Bid End Date <i class="fa fa-sort" (click)="sortHeader('BID_LAST_DATE')"></i></th>
+                    <th class="hover:bg-primary-reverse" (click)="sortHeader('CUSTOMER_NO')">Product Proposal Date <i class="fa fa-sort" (click)="sortHeader('CUSTOMER_NO')"></i></th>
+
+                </tr>
+            </thead>
+            <tbody class="bg-purple-500 border-solid border-dark text-white">
+                <tr class="hover:bg-primary-reverse" *ngFor="let rfq of RFQData
+              | orderBy: orderField : reverseSort
+              | filterBy :searchInput
+              | paginate:{itemsPerPage:18,currentPage:page,totalItems:RFQData.length} ; let i=index">
+                    <td class="bg-primary">{{rfq.PURCHASE_ORDER_NO}}</td>
+                    <td class="">{{rfq.PURCHASE_ORDER_CREATED_DATE}}</td>
+                    <td class="">{{rfq.PURCHASE_ORGANISATION}}</td>
+                    <td class="">{{rfq.PURCHASE_DOC_DATE}}</td>
+                    <td class="">{{rfq.BID_LAST_DATE}}</td>
+                    <td class="">{{rfq.CUSTOMER_NO}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <h3 class="pt-5 text-danger text-lg-center" *ngIf="(RFQData | filterBy: searchInput).length === 0">No matching Documents found</h3>
+        <pagination-controls (pageChange)="page=$event" class="my-pagination"></pagination-controls>
+    </div>
+</div>
